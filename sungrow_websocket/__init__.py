@@ -42,6 +42,13 @@ class SungrowWebsocket:
         self.locale: str = locale
         self.strings: dict[str, str] = {}
 
+        out = self.host.rsplit(":", 1)
+        try:
+            self.port = int(out[1])
+            self.host = out[0]
+        except (IndexError, ValueError):
+           pass
+
     async def _update_strings(self):
         self.strings = {}
         url: str = f"http://{self.host}/i18n/{self.locale}.properties"

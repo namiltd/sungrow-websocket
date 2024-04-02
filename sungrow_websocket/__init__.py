@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import sys
 import asyncio
 from typing import TypedDict
 import websockets.client
@@ -230,4 +231,5 @@ def main():
         table = [["Device", "Item", "Value"]] + [
             [item.device, item.desc, f"{item.value} {item.unit}"] for item in data.values()
         ]
+    sys.stdout.reconfigure(encoding = "utf-8")
     print(AsciiTable(table).table)
